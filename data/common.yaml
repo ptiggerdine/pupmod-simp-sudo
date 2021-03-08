@@ -9,3 +9,5 @@ lookup_options:
   'sudo::aliases':
     merge:
       strategy: deep
+
+sudo::package_name: 'sudo'

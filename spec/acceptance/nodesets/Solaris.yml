@@ -1,0 +1,27 @@
+<%
+  if ENV['BEAKER_HYPERVISOR']
+    hypervisor = ENV['BEAKER_HYPERVISOR']
+  else
+    hypervisor = 'vagrant'
+  end
+-%>
+HOSTS:
+  Solaris11-4:
+    roles:
+      - client
+      # roles migrated from now-removed el6 node(s):
+      - server
+      - default
+      - master
+    platform: Solaris-11.4-x86_64
+    box: mtermer/solaris-11_4-puppet
+    hypervisor: <%= hypervisor %>
+
+CONFIG:
+  log_level: verbose
+  synced_folder : disabled
+  type: aio
+  vagrant_memsize: 256
+<% if ENV['BEAKER_PUPPET_COLLECTION'] -%>
+  puppet_collection: <%= ENV['BEAKER_PUPPET_COLLECTION'] %>
+<% end -%>

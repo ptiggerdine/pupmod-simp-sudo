@@ -2,5 +2,8 @@
 version: 5
 
 hierarchy:
+  - name: 'OperatingSystem'
+    path: '%{::operatingsystem}.yaml'
+
   - name: 'Common'
     path: 'common.yaml'

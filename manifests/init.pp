@@ -28,11 +28,13 @@ class sudo (
   Hash   $user_specifications = {},
   Hash   $default_entries     = {},
   Hash   $aliases             = {},
+  String $package_name        = lookup('sudo::package_name', { 'default_value' => 'sudo' }),
   String $package_ensure      = simplib::lookup('simp_options::package_ensure', { 'default_value' => 'installed' }),
 ) {
 
   package { 'sudo':
-    ensure => $package_ensure
+    name   => $package_name,
+    ensure => $package_ensure,
   }
 
   concat { '/etc/sudoers':
